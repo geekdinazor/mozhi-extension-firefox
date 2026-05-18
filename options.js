@@ -30,34 +30,69 @@ let state = JSON.parse(JSON.stringify(DEFAULTS));
 // UI helpers
 // ---------------------------------------------------------------------------
 // Redraw the API list in the UI
+const SVG_NS = "http://www.w3.org/2000/svg";
+
+function svgEl(tag, attrs) {
+  const el = document.createElementNS(SVG_NS, tag);
+  for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+  return el;
+}
+
+function buildRemoveIcon() {
+  const svg = svgEl("svg", {
+    viewBox: "0 0 24 24",
+    width: "16",
+    height: "16",
+    fill: "none",
+    stroke: "currentColor",
+    "stroke-width": "2",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "aria-hidden": "true",
+  });
+  svg.appendChild(svgEl("polyline", { points: "3 6 5 6 21 6" }));
+  svg.appendChild(svgEl("path", { d: "M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" }));
+  svg.appendChild(svgEl("path", { d: "M10 11v6" }));
+  svg.appendChild(svgEl("path", { d: "M14 11v6" }));
+  svg.appendChild(svgEl("path", { d: "M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" }));
+  return svg;
+}
+
 function renderList() {
-  listEl.innerHTML = "";
+  listEl.textContent = "";
   state.apis.forEach((api, idx) => {
     const li = document.createElement("li");
     li.className = "api-item";
-    li.innerHTML = `
-      <label class="toggle" title="Enable / disable">
-        <input type="checkbox" ${api.enabled ? "checked" : ""} data-idx="${idx}" data-field="enabled" />
-        <span class="slider"></span>
-      </label>
-      <input type="url" value="${escapeAttr(api.url)}" data-idx="${idx}" data-field="url" placeholder="https://mozhi.example.com" />
-      <button class="remove" title="Remove" data-idx="${idx}" aria-label="Remove">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <polyline points="3 6 5 6 21 6"></polyline>
-          <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
-          <path d="M10 11v6"></path>
-          <path d="M14 11v6"></path>
-          <path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path>
-        </svg>
-      </button>
-    `;
+
+    const toggleLabel = document.createElement("label");
+    toggleLabel.className = "toggle";
+    toggleLabel.title = "Enable / disable";
+    const toggleInput = document.createElement("input");
+    toggleInput.type = "checkbox";
+    toggleInput.checked = !!api.enabled;
+    toggleInput.dataset.idx = idx;
+    toggleInput.dataset.field = "enabled";
+    const slider = document.createElement("span");
+    slider.className = "slider";
+    toggleLabel.append(toggleInput, slider);
+
+    const urlInput = document.createElement("input");
+    urlInput.type = "url";
+    urlInput.value = api.url || "";
+    urlInput.dataset.idx = idx;
+    urlInput.dataset.field = "url";
+    urlInput.placeholder = "https://mozhi.example.com";
+
+    const removeBtn = document.createElement("button");
+    removeBtn.className = "remove";
+    removeBtn.title = "Remove";
+    removeBtn.dataset.idx = idx;
+    removeBtn.setAttribute("aria-label", "Remove");
+    removeBtn.appendChild(buildRemoveIcon());
+
+    li.append(toggleLabel, urlInput, removeBtn);
     listEl.appendChild(li);
   });
-}
-
-// Basic HTML attribute escaping
-function escapeAttr(s) {
-  return String(s || "").replace(/"/g, "&quot;");
 }
 
 // ---------------------------------------------------------------------------
@@ -200,7 +235,7 @@ function hasOption(el, value) {
 // (like "auto" or "en"), and finally just pick the first option.
 // The _unusedWithAuto param is left over from an earlier version.
 function fillSelect(el, items, selected, _unusedWithAuto, fallbacks = []) {
-  el.innerHTML = "";
+  el.textContent = "";
   items.forEach(({ id, name }) => {
     const opt = document.createElement("option");
     opt.value = id;
