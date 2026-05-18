@@ -17,6 +17,12 @@ Select text on any page, right-click, and get translations without being tracked
 - **Dark Mode Support**: Automatically adapts to your system's color scheme
 - **Self-Host Friendly**: Use a trusted public Mozhi instance or host your own
 
+## Screenshots
+
+| Google | DeepL | Yandex |
+|--------|-------|--------|
+| ![Translating with Google via Mozhi](screenshots/m_google.png) | ![Translating with DeepL via Mozhi](screenshots/m_deepl.png) | ![Translating with Yandex via Mozhi](screenshots/m_yandex.png) |
+
 ## Installation
 
 No build process required: this is a pure JavaScript browser extension.
@@ -105,8 +111,11 @@ mozhiTranslateFirefox/
 ├── options.html        # Options page UI
 ├── options.js          # Options page logic
 ├── options.css         # Options page styles
-└── icons/
-    └── mozhi.png       # Extension icon
+├── icons/
+│   ├── mozhi-48.png    # Toolbar icon (48 px)
+│   ├── mozhi-96.png    # Toolbar icon (96 px) and UI logo
+│   └── mozhi-128.png   # Add-on listing icon (128 px)
+└── screenshots/        # Listing screenshots (not packaged)
 ```
 
 ## Credits
