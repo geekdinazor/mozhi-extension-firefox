@@ -1,0 +1,41 @@
+{
+  "manifest_version": 2,
+  "name": "Mozhi Translate Unofficial",
+  "version": "1.0.0",
+  "author": "Furkan Kalkan",
+  "homepage_url": "https://github.com/geekdinazor/mozhi-extension-firefox",
+  "description": "Translate without being tracked. Highlight any text on a page, right-click, and get a translation through a Mozhi instance: an open-source proxy to Google, DeepL, Yandex and others that strips away their tracking. Pick a public instance you trust or self-host your own. You decide where your text goes. No telemetry, no analytics, no remote scripts. Your settings live only in your browser, and the translation cache stays in memory and can be wiped any time from the options page. Unofficial third-party extension, not affiliated with the Mozhi project.",
+  "icons": {
+    "48": "icons/mozhi.png",
+    "96": "icons/mozhi.png"
+  },
+  "permissions": ["contextMenus", "storage", "activeTab", "<all_urls>"],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "browser_action": {
+    "default_title": "Mozhi Translate Unofficial",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icons/mozhi.png"
+    }
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "mozhi-translate-unofficial@furkankalkan.com",
+      "strict_min_version": "78.0"
+    }
+  }
+}

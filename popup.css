@@ -1,0 +1,52 @@
+:root { color-scheme: light dark; }
+body {
+  margin: 0;
+  width: 340px;
+  font: 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.selectors { display: flex; flex-direction: column; gap: 6px; }
+.selectors label { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.selectors label span { font-size: 11px; color: #6b7280; }
+.selectors select {
+  width: 100%; padding: 6px 8px; font: inherit;
+  border: 1px solid #d1d5db; border-radius: 6px; background: Field; color: FieldText;
+}
+.lang-row { display: flex; gap: 6px; align-items: flex-end; }
+.swap {
+  height: 32px; padding: 0 8px; flex-shrink: 0;
+  background: #f3f4f6; border: 1px solid #d1d5db; border-radius: 6px; cursor: pointer;
+}
+.swap:hover { border-color: #f57c00; color: #f57c00; }
+.swap:disabled { opacity: 0.4; cursor: not-allowed; }
+@media (prefers-color-scheme: dark) {
+  .selectors select { background: #1f2937; color: #f9fafb; border-color: #374151; }
+  .swap { background: #1f2937; color: #f9fafb; border-color: #374151; }
+}
+.wrap { padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.brand { display: flex; align-items: center; gap: 8px; }
+.brand img { width: 22px; height: 22px; border-radius: 5px; display: block; }
+.brand h1 { margin: 0; font-size: 14px; font-weight: 600; }
+textarea {
+  width: 100%; resize: vertical; padding: 8px;
+  border: 1px solid #d1d5db; border-radius: 8px; font: inherit;
+  background: Field; color: FieldText;
+}
+.row { display: flex; gap: 8px; align-items: center; }
+button {
+  background: #f3f4f6; border: 1px solid #d1d5db; border-radius: 8px;
+  padding: 7px 12px; cursor: pointer; font: inherit;
+}
+button.primary { background: #f57c00; border-color: #f57c00; color: #fff; }
+button.link { background: transparent; border: 0; color: #f57c00; margin-left: auto; }
+.output {
+  white-space: pre-wrap; word-wrap: break-word;
+  background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 8px 10px;
+  max-height: 240px; overflow-y: auto; overscroll-behavior: contain;
+}
+.output.err { color: #b91c1c; }
+.meta { font-size: 11px; color: #6b7280; }
+@media (prefers-color-scheme: dark) {
+  textarea { background: #1f2937; color: #f9fafb; border-color: #374151; }
+  button { background: #1f2937; color: #f9fafb; border-color: #374151; }
+  .output { background: #1f2937; border-color: #374151; color: #f9fafb; }
+}

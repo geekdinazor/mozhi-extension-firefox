@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mozhi Translate Unofficial – Settings</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <main>
+    <div class="brand">
+      <img src="icons/mozhi.png" alt="Mozhi logo" />
+      <h1>Mozhi Translate Unofficial</h1>
+    </div>
+
+    <section>
+      <h2>API Endpoints</h2>
+      <p class="hint">Add one or more Mozhi API instances. When multiple are enabled, an instance is picked at random for each translation. Browse public instances at <a href="https://codeberg.org/aryak/mozhi#instances" target="_blank" rel="noopener noreferrer">codeberg.org/aryak/mozhi#instances</a>, or run your own for full privacy.</p>
+      <ul id="api-list" class="api-list"></ul>
+      <div class="row">
+        <input id="new-api-url" type="url" placeholder="https://mozhi.example.com" />
+        <button id="add-api">Add</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Translation defaults</h2>
+      <div class="grid">
+        <label>
+          Engine
+          <select id="engine"></select>
+        </label>
+        <label>
+          Source language
+          <select id="source"></select>
+        </label>
+        <label>
+          Target language
+          <select id="target"></select>
+        </label>
+      </div>
+      <button id="reload-engines" class="link">Reload engines & languages</button>
+      <label class="switch">
+        <span class="toggle">
+          <input type="checkbox" id="remember-last-used" />
+          <span class="slider"></span>
+        </span>
+        <span>Remember last used translation configuration (instead of the defaults above)</span>
+      </label>
+    </section>
+
+    <section>
+      <h2>In-page behavior</h2>
+      <label class="switch">
+        <span class="toggle">
+          <input type="checkbox" id="show-selection-button" />
+          <span class="slider"></span>
+        </span>
+        <span>Show floating "Translate" button after selecting text</span>
+      </label>
+    </section>
+
+    <section>
+      <h2>Privacy</h2>
+      <p class="hint">Recent successful translations are cached in memory for 30 minutes to avoid re-sending identical text. Clear it to drop cached translations immediately.</p>
+      <p class="cache-stats">Cached translations: <strong id="cache-count">0</strong></p>
+      <button id="clear-cache" class="link">Clear translation cache</button>
+    </section>
+
+    <div class="status-row">
+      <span id="status" class="status"></span>
+    </div>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>

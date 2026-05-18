@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">
+      <img src="icons/mozhi.png" alt="Mozhi logo" />
+      <h1>Mozhi Translate Unofficial</h1>
+    </div>
+    <div class="selectors">
+      <label>
+        <span>Engine</span>
+        <select id="engine"></select>
+      </label>
+      <div class="lang-row">
+        <label>
+          <span>From</span>
+          <select id="source"></select>
+        </label>
+        <button id="swap" class="swap" title="Swap languages" type="button">⇄</button>
+        <label>
+          <span>To</span>
+          <select id="target"></select>
+        </label>
+      </div>
+    </div>
+    <textarea id="input" rows="4" placeholder="Type or paste text…"></textarea>
+    <div class="row">
+      <button id="translate" class="primary">Translate</button>
+      <button id="open-options" class="link">Settings</button>
+    </div>
+    <div id="output" class="output" hidden></div>
+    <div id="meta" class="meta"></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
