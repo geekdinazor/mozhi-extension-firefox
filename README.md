@@ -25,7 +25,7 @@ Select text on any page, right-click, and get translations without being tracked
 
 ## Installation
 
-No build process required: this is a pure JavaScript browser extension.
+[![Get Add-on from Firefox Addons website](screenshots/get_addon.png)](https://addons.mozilla.org/en-US/firefox/addon/mozhi-translate-unofficial/)
 
 ### Temporary Installation (for development/testing)
 
